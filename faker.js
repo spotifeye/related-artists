@@ -9,7 +9,7 @@ let connection = mysql.createConnection({
     database : 'artists'
 })
 
-
+//create fake data
 let results = []
 for (let i = 0; i < 101; i++ ) {
 
@@ -25,6 +25,8 @@ for (let i = 0; i < 101; i++ ) {
 // console.log(results[0].listeners);
 // console.log(results[0].artist_image);
 
+//store fake data in records table
+/*
  for (let j = 0; j < results.length; j++){
      connection.query(`INSERT INTO artist (artist_name, listeners, artist_image) VALUES("${results[j].artist_name}", "${results[j].listeners}", "${results[j].artist_image}")`, function(error, result, fields) {
          if (error) {
@@ -33,9 +35,18 @@ for (let i = 0; i < 101; i++ ) {
          
      })
  }
+*/
 
+const getRelatedArtists = function(getArtist) {
+    connection.query('SELECT artist_name from artist', function(error, result, fields) {
+        if (error) {
+            getArtist(error);
+        } else {
+            console.log(result);
+            getArtist(null, result);
+        }
+    });
+};
 
-//loop over fake artist
-  //create 100 artist objects
-//use fs.writefile to save to csv
+module.exports.getRelatedArtists = getRelatedArtists;
 
