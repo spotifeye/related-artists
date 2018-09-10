@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS artist (
   artist_image VARCHAR(40) NOT NULL
 );
 
--- DROP TABLE IF EXISTS relatedArtists;
+DROP TABLE IF EXISTS relatedArtists;
 		
 CREATE TABLE relatedArtists (
    id INT AUTO_INCREMENT PRIMARY KEY,

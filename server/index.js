@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser')
-var db = require('../faker.js');
+var db = require('../db_index.js');
 
 
 app.get('/artist/id/relatedArtists', (req, res) => {
