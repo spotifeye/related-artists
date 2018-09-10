@@ -8,8 +8,8 @@ let connection = mysql.createConnection({
 });
 
 
-const getRelatedArtists = function(getArtist) {
-    connection.query('SELECT artist_name from artist', function(error, result, fields) {
+const getRelatedArtists = function(currentArtist, getArtist) {
+    connection.query(`select artist_name, artistid, listeners from artist where artistid in (select related_artist_id from relatedartists where main_artist_id = (select artistid from artist where artist_id = "${currentArtist}"))`, function(error, result, fields) {
         if (error) {
             getArtist(error);
         } else {
@@ -18,6 +18,8 @@ const getRelatedArtists = function(getArtist) {
         }
     });
 };
+//select * from relatedartists where main_artist_id = 10;+-----+-------------------+----------------+
+// select artist_name, artistid, listeners from artist  where artistid in (select related_artist_id from relatedartists where main_artist_id= (select artistid from artist where artist_name= 'Ms. Rick Leuschke'));
 
 module.exports.getRelatedArtists = getRelatedArtists;
 
