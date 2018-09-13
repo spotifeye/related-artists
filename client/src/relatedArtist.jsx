@@ -1,14 +1,16 @@
 //contains artists container and button, displays each entry
 import React from 'react';
-import ReactDOM from 'react-dom'
+import relatedArtistEntry from './relatedArtistEntry';
 
 const relatedArtist = (props) =>(
        
             <div>
-              <div>'hello from hello</div>
-
-               {/* //map each related artist entry */}
-              
+              <div>
+                {
+                props.relatedArtist.map(artistEntry => <relatedArtistEntry item={artistEntry}/>)
+                }
+              </div>              
+              <button>button that extends container to show five more</button>
             </div>
     )
 export default relatedArtist;
