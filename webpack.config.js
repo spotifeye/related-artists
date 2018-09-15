@@ -1,3 +1,4 @@
+
 var path = require('path');
 var SRC_DIR = path.join(__dirname, '/client');
 var DIST_DIR = path.join(__dirname, '/public');
@@ -5,7 +6,6 @@ var DIST_DIR = path.join(__dirname, '/public');
 //`/Users/ShabnamMokhtarani/Desktop/HRSF101-Repos/hrsf101-front-end-capstone/client/src/index.jsx`,
 module.exports = {
   entry:  `${SRC_DIR}/src/index.jsx`,
-
   output: {
     filename: 'bundle.js',
     path: DIST_DIR
