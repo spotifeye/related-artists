@@ -11,18 +11,21 @@ let connection = mysql.createConnection({
 
 //create fake data
 
+//randomly generate an artist id for current artist
+
 let results = []
 for (let i = 0; i < 101; i++ ) {
 
     results.push({
         artist_name : faker.name.findName(),
         listeners : faker.random.number(),
-        artist_image : faker.image.people()
+        artist_image : faker.image.people(),
+        popularSong : faker.random.words()
     })  
 }
 
 
-// console.log(results);
+//console.log(results);
 // console.log(results[0].artistName);
 // console.log(results[0].listeners);
 // console.log(results[0].artist_image);
@@ -30,7 +33,7 @@ for (let i = 0; i < 101; i++ ) {
 //store fake data in records table
 
  for (let j = 0; j < results.length; j++){
-     connection.query(`INSERT INTO artist (artist_name, listeners, artist_image) VALUES("${results[j].artist_name}", "${results[j].listeners}", "${results[j].artist_image}")`, function(error, result, fields) {
+     connection.query(`INSERT INTO artist (artist_name, listeners, artist_image, popularSong) VALUES("${results[j].artist_name}", "${results[j].listeners}", "${results[j].artist_image}", "${results[j].popularSong}")`, function(error, result, fields) {
          if (error) {
              console.log(error);
          }
@@ -66,19 +69,3 @@ for (let i = 0; i < 101; i++ ) {
      }
      
  }
-
-
-/*
-const getRelatedArtists = function(getArtist) {
-    connection.query('SELECT artist_name from artist', function(error, result, fields) {
-        if (error) {
-            getArtist(error);
-        } else {
-            console.log(result);
-            getArtist(null, result);
-        }
-    });
-};
-
-module.exports.getRelatedArtists = getRelatedArtists;
-*/
