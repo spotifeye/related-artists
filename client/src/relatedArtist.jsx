@@ -7,7 +7,6 @@ class relatedArtist extends React.Component {
     this.state = {
        addMoreArtists: false
     }
-
   }
 
  
