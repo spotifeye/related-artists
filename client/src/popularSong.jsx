@@ -1,23 +1,14 @@
 //displays most popular song and option to click as popup
 import React from 'react';
 
-class popularSong extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            popUp : false;
-        }
-    }
-    handleClick() {
+const popularSong =(props) => {
 
-    }
-    render() {
         return(
         <div>
-
+          <div> {props.artist.popularSong} </div>
         </div>
         )
-    }
+    
 }
 
 export default popularSong;
