@@ -1,16 +1,28 @@
-//contains artists container and button, displays each entry
 import React from 'react';
-import relatedArtistEntry from './relatedArtistEntry';
+import RelatedArtistEntry from './relatedArtistEntry.jsx';
 
-const relatedArtist = (props) =>(
-       
+class relatedArtist extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+       addMoreArtists: false
+    }
+
+  }
+
+ 
+      render() {
+       return(
             <div>
-              <div>
-                {
-                props.relatedArtist.map(artistEntry => <relatedArtistEntry item={artistEntry}/>)
-                }
-              </div>              
-              <button>button that extends container to show five more</button>
+              <div>another hello</div>
+              <div>{this.props.relatedArtists.map((artistEntry, index) => <div key={index}> <RelatedArtistEntry artist={artistEntry}/></div>)}</div>
             </div>
-    )
+       )
+      }
+
+    }
+  
 export default relatedArtist;
+
+//https://www.w3schools.com/howto/howto_js_expanding_grid.asp
+//          <div>{this.props.relatedArtists.map(artist => <RelatedArtistEntry artist={artist}/>) }</div>  
