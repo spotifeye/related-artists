@@ -1,11 +1,16 @@
 //displays most popular song and option to click as popup
 import React from 'react';
+import { Popover } from 'react-bootstrap';
 
 const popularSong =(props) => {
-
+let styles = {
+  backgroundColor: 'black',
+}
         return(
         <div>
-          <div> {props.artist.popularSong} </div>
+            <Popover id="popover-positioned-right" style={styles}>
+            {props.artist.popularSong}
+            </Popover>
         </div>
         )
     
