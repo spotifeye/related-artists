@@ -1,5 +1,6 @@
 import React from 'react';
 import RelatedArtists from './relatedArtist.jsx';
+import './styles/relatedArtist.css'
 
 
 const axios = require('axios');
@@ -11,10 +12,7 @@ class App extends React.Component {
          relatedArtists : [],
          firstFourArtists : []
        }
-       this.styles = {
-           backgroundColor: 'black',
-           color: 'white'
-       }
+
        this.getRelatedArtists = this.getRelatedArtists.bind(this);
        this.moreArtistsHandleClick = this.moreArtistsHandleClick.bind(this);
    }
@@ -56,11 +54,11 @@ class App extends React.Component {
 
         return (
         <div>
-            <div className="RAContainer" style={this.styles}>
+            <div className="RAContainer">
             <h1>Related Artists</h1>
               <div id="panel panel-default">
                 <div id="panel-body"><RelatedArtists relatedArtists={this.state.relatedArtists}/></div>     
-                <div class="panel-footer">
+                <div className="RAbutton"class="panel-footer">
                 <button onClick={this.moreArtistsHandleClick}>More Artists</button>
               </div>
               </div>

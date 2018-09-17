@@ -8,16 +8,13 @@ class relatedArtist extends React.Component {
     this.state = {
        addMoreArtists: false
     }
-    this.styles = {
-      
 
-  }
 }
 
  //map function needs to be in return statement
       render() {
        return(
-            <div className="RelatedArtist" style={this.styles}>
+            <div className="RelatedArtist" >
               <div>{this.props.relatedArtists.map((artistEntry, index) => <div key={index}> <RelatedArtistEntry artist={artistEntry}/></div>)}</div>
             <div id="panel panel-default">
               

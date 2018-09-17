@@ -12,11 +12,7 @@ class relatedArtistEntry extends React.Component {
            isPopupHidden: true,
            isListenersHidden: true
        }
-       this.styles = {
-        border: '20px',
-        display: 'flex',
-        
-      }
+
        this.togglePopup = this.togglePopup.bind(this);
        this.toggleListeners = this.toggleListeners.bind(this);
        this.showListeners = this.showListeners.bind(this);
@@ -46,11 +42,11 @@ class relatedArtistEntry extends React.Component {
 
    render() {
     return(
-        <Grid fluid={true}>
+        <Grid className="RAEntry">
             <Row>
-         <div style={this.styles} onMouseOver={this.toggleListeners} onMouseLeave={this.toggleListeners}>
+         <div onMouseOver={this.toggleListeners} onMouseLeave={this.toggleListeners}>
           <div onClick={this.togglePopup}>
-            <div className="RaEntry" style={this.styles}>
+            <div className="RaEntry">
                <Col lg={3}>
                 <div>
                     <Image src={this.props.artist.artist_image} circle width="50" height="50"/>
