@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
 import RelatedArtists from './relatedArtist.jsx';
 const axios = require('axios');
 
@@ -8,6 +7,10 @@ class App extends React.Component {
        super(props);
        this.state = {  
          relatedArtists : []
+       }
+       this.styles = {
+           backgroundColor: 'black',
+           color: 'white'
        }
        this.getRelatedArtists = this.getRelatedArtists.bind(this);
    }
@@ -29,15 +32,19 @@ class App extends React.Component {
 
    componentDidMount() {
        this.getRelatedArtists();
-       console.log('something for the love of god')
+       console.log('do something for the love of god')
    }
 
     render() {
+
         return (
         <div>
-            <div>hello</div>
-            <div>check</div>
-            <RelatedArtists relatedArtists={this.state.relatedArtists}/>
+            <div className="RAContainer" style={this.styles}>
+            <h1>Related Artists</h1>
+              <div id="panel panel-default">
+                <div id="panel-body"><RelatedArtists relatedArtists={this.state.relatedArtists}/></div>     
+              </div>
+            </div>
         </div>
         );
     }

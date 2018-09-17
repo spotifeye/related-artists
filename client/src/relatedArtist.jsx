@@ -7,14 +7,19 @@ class relatedArtist extends React.Component {
     this.state = {
        addMoreArtists: false
     }
+
   }
 
- 
+ //map function needs to be in return statement
       render() {
        return(
             <div>
-              <div>another hello</div>
               <div>{this.props.relatedArtists.map((artistEntry, index) => <div key={index}> <RelatedArtistEntry artist={artistEntry}/></div>)}</div>
+            <div id="panel panel-default">
+              <div class="panel-footer">
+              <button>More artists</button>
+              </div>
+            </div>
             </div>
        )
       }
@@ -24,4 +29,3 @@ class relatedArtist extends React.Component {
 export default relatedArtist;
 
 //https://www.w3schools.com/howto/howto_js_expanding_grid.asp
-//          <div>{this.props.relatedArtists.map(artist => <RelatedArtistEntry artist={artist}/>) }</div>  
