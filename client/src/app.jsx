@@ -1,6 +1,7 @@
 import React from 'react';
 import RelatedArtists from './relatedArtist.jsx';
 
+
 const axios = require('axios');
 var allArtists;
 class App extends React.Component {
@@ -60,7 +61,7 @@ class App extends React.Component {
               <div id="panel panel-default">
                 <div id="panel-body"><RelatedArtists relatedArtists={this.state.relatedArtists}/></div>     
                 <div class="panel-footer">
-                <button onClick={this.moreArtistsHandleClick}>More artists</button>
+                <button onClick={this.moreArtistsHandleClick}>More Artists</button>
               </div>
               </div>
             </div>

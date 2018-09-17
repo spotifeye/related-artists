@@ -7,6 +7,7 @@ import { faPlayCircle } from '@fortawesome/free-solid-svg-icons'
 const popularSong =(props) => {
 let styles = {
   backgroundColor: 'black',
+  float: 'right'
 }
         return(
         <div>
@@ -20,5 +21,3 @@ let styles = {
 }
 
 export default popularSong;
-
-// https://getbootstrap.com/docs/4.0/components/popovers/

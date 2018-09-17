@@ -1,5 +1,6 @@
 import React from 'react';
 import RelatedArtistEntry from './relatedArtistEntry.jsx';
+import { Popover } from 'react-bootstrap';
 
 class relatedArtist extends React.Component {
   constructor(props){
@@ -7,18 +8,19 @@ class relatedArtist extends React.Component {
     this.state = {
        addMoreArtists: false
     }
+    this.styles = {
+      
 
   }
+}
 
  //map function needs to be in return statement
       render() {
        return(
-            <div>
+            <div className="RelatedArtist" style={this.styles}>
               <div>{this.props.relatedArtists.map((artistEntry, index) => <div key={index}> <RelatedArtistEntry artist={artistEntry}/></div>)}</div>
             <div id="panel panel-default">
-              <div class="panel-footer">
-              <button>More artists</button>
-              </div>
+              
             </div>
             </div>
        )

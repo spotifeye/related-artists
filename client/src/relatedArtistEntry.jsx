@@ -1,6 +1,9 @@
 
 import React from 'react';
 import PopularSong from './popularSong.jsx';
+import Listeners from './listeners.jsx';
+import { Image, Grid, Row, Col } from 'react-bootstrap';
+
 
 class relatedArtistEntry extends React.Component {
    constructor(props) {
@@ -9,7 +12,15 @@ class relatedArtistEntry extends React.Component {
            isPopupHidden: true,
            isListenersHidden: true
        }
+       this.styles = {
+        border: '20px',
+        display: 'flex',
+        
+      }
        this.togglePopup = this.togglePopup.bind(this);
+       this.toggleListeners = this.toggleListeners.bind(this);
+       this.showListeners = this.showListeners.bind(this);
+       this.hideListeners = this.hideListeners.bind(this);
    }
    togglePopup () {
        this.setState({
@@ -17,17 +28,44 @@ class relatedArtistEntry extends React.Component {
        })
    }
 
+   toggleListeners () {
+       this.setState({
+           isListenersHidden: !this.state.isListenersHidden
+       })
+   }
+   showListeners () {
+       this.setState({
+           isListenersHidden: false
+       }) 
+   }
+   hideListeners () {
+       this.setState({
+           isListenersHidden: true
+       })
+   }
+
    render() {
     return(
+        <Grid fluid={true}>
+            <Row>
+         <div style={this.styles} onMouseOver={this.toggleListeners} onMouseLeave={this.toggleListeners}>
           <div onClick={this.togglePopup}>
-               <div><img src={this.props.artist.artist_image}></img></div>
-               <div>{this.props.artist.artist_name}</div> 
-               <div>{this.props.artist.listeners}</div>
-                  <div> {!this.state.isPopupHidden && <PopularSong artist={this.props.artist}/>}</div>
+            <div className="RaEntry" style={this.styles}>
+               <Col lg={3}>
+                <div>
+                    <Image src={this.props.artist.artist_image} circle width="50" height="50"/>
+                </div>
+                </Col>
+              <Col lg={3}> <div>{this.props.artist.artist_name}</div> </Col>
+              <Col lg={3}><div>{this.state.isListenersHidden === false && <Listeners artist={this.props.artist}/>}</div></Col> 
+               <Col lg={3}><div> {!this.state.isPopupHidden && <PopularSong artist={this.props.artist}/>}</div></Col>
+
+               </div>
+              
+            </div>
           </div>
-          
-        //   onMouseEnter={this.displayListenersHandler()}
-        //   onMouseLeave={this.displayListenersHandler()}
+          </Row>
+          </Grid>
     )
    }
 }
