@@ -1,25 +1,23 @@
-//displays most popular song and option to click as popup
 import React from 'react';
+import { Popover } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlayCircle } from '@fortawesome/free-solid-svg-icons'
 
-class popularSong extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            popUp : false;
-        }
-    }
-    handleClick() {
 
-    }
-    render() {
+const popularSong =(props) => {
+let styles = {
+  backgroundColor: 'black',
+  float: 'right'
+}
         return(
         <div>
-
+            <Popover id="popover-positioned-right" style={styles}>
+            <FontAwesomeIcon icon={faPlayCircle} />
+            {props.artist.popularSong}
+            </Popover>
         </div>
         )
-    }
+    
 }
 
 export default popularSong;
-
-// https://getbootstrap.com/docs/4.0/components/popovers/

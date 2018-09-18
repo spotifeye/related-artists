@@ -1,0 +1,34 @@
+
+html, body {
+    background: black;
+
+}
+
+:local(.RAContainer) {
+    background-color: black;
+    font-family : 'Montserrat', sans-serif, bold;
+    color: white;
+}
+
+:local(.RAEntry) {
+    display: flex;
+}
+
+
+:local(.RAButton) {
+  background: #1DB954;
+  border-radius: 500px;
+  color: black;
+  font-size: 11px;
+  line-height: 11px;
+  margin: 0;
+  min-width: 92px;
+  padding: 8px 25px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  margin-right: 10px;
+  float: left;
+  border: 0.5px solid #b3b3b3;
+  margin-top: 2rem;
+}
