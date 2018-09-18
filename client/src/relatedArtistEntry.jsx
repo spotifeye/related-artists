@@ -45,6 +45,7 @@ class relatedArtistEntry extends React.Component {
 
    render() {
     return(
+        <div class="d-flex justify-content-start">
         <Grid styleName="RAEntry">
             <Row>
          <div onMouseOver={this.toggleListeners} onMouseLeave={this.toggleListeners}>
@@ -56,7 +57,7 @@ class relatedArtistEntry extends React.Component {
                 </div>
                 </Col>
               <Col lg={3}> <div>{this.props.artist.artist_name}</div> </Col>
-              <Col lg={3}><div>{this.state.isListenersHidden === false && <Listeners artist={this.props.artist}/>}</div></Col> 
+              <Col lg={3}><div styeleName="RAListeners">{this.state.isListenersHidden === false && <Listeners artist={this.props.artist}/>}</div></Col> 
                <Col lg={3}><div> {!this.state.isPopupHidden && <PopularSong artist={this.props.artist}/>}</div></Col>
 
                </div>
@@ -65,6 +66,7 @@ class relatedArtistEntry extends React.Component {
           </div>
           </Row>
           </Grid>
+          </div>
     )
    }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
-import App from './app.jsx';
+import ReactDOM from 'react-dom';
+import RAApp from './app.jsx';
 
+ReactDOM.render (<RAApp />, document.getElementById ('raapp'));
 
-ReactDOM.render(<App />, document.getElementById('app'));
+window.RAApp = RAApp;

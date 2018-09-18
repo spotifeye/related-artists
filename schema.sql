@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS artist (
   artistID INT AUTO_INCREMENT PRIMARY KEY,
   artist_name VARCHAR(40) NOT NULL,
   listeners INT,
-  artist_image VARCHAR(40) NOT NULL,
+  artist_image VARCHAR(70) NOT NULL,
   popularSong VARCHAR(130) NOT NULL
 );
 

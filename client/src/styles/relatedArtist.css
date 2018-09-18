@@ -13,6 +13,10 @@ html, body {
 :local(.RAEntry) {
     display: flex;
 }
+:local(.RAEntry :hover) {
+    display: flex;
+    visible: visible;
+}
 
 
 :local(.RAButton) {
@@ -31,4 +35,12 @@ html, body {
   float: left;
   border: 0.5px solid #b3b3b3;
   margin-top: 2rem;
+}
+
+:local(.RAListeners) {
+
+}
+
+:local(.RAListeners :hover) {
+    
 }
