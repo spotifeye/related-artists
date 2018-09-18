@@ -1,6 +1,8 @@
 import React from 'react';
 import RelatedArtistEntry from './relatedArtistEntry.jsx';
-import { Popover } from 'react-bootstrap';
+import styles from './styles/relatedArtist.css'
+import CSSModules from 'react-css-modules';
+
 
 class relatedArtist extends React.Component {
   constructor(props){
@@ -14,7 +16,7 @@ class relatedArtist extends React.Component {
  //map function needs to be in return statement
       render() {
        return(
-            <div className="RelatedArtist" >
+            <div >
               <div>{this.props.relatedArtists.map((artistEntry, index) => <div key={index}> <RelatedArtistEntry artist={artistEntry}/></div>)}</div>
             <div id="panel panel-default">
               
@@ -25,6 +27,6 @@ class relatedArtist extends React.Component {
 
     }
   
-export default relatedArtist;
+export default CSSModules(relatedArtist, styles);
 
 //https://www.w3schools.com/howto/howto_js_expanding_grid.asp

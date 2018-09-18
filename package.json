@@ -58,7 +58,8 @@
     "jest-enzyme": "^6.0.4",
     "puppeteer": "^1.8.0",
     "react-bootstrap": "^0.32.4",
-    "react-test-renderer": "^16.5.1",
+    "react-css-modules": "^4.7.7",
+    "react-test-renderer": "^15.5.4",
     "style-loader": "^0.23.0",
     "webpack": "^3.12.0"
   }

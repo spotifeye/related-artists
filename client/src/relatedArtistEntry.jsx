@@ -3,6 +3,9 @@ import React from 'react';
 import PopularSong from './popularSong.jsx';
 import Listeners from './listeners.jsx';
 import { Image, Grid, Row, Col } from 'react-bootstrap';
+import styles from './styles/relatedArtist.css'
+import CSSModules from 'react-css-modules';
+
 
 
 class relatedArtistEntry extends React.Component {
@@ -42,11 +45,11 @@ class relatedArtistEntry extends React.Component {
 
    render() {
     return(
-        <Grid className="RAEntry">
+        <Grid styleName="RAEntry">
             <Row>
          <div onMouseOver={this.toggleListeners} onMouseLeave={this.toggleListeners}>
           <div onClick={this.togglePopup}>
-            <div className="RaEntry">
+            <div styleName="RAEntry">
                <Col lg={3}>
                 <div>
                     <Image src={this.props.artist.artist_image} circle width="50" height="50"/>
@@ -66,4 +69,4 @@ class relatedArtistEntry extends React.Component {
    }
 }
 
-export default relatedArtistEntry;
+export default CSSModules(relatedArtistEntry, styles);

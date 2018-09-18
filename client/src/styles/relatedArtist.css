@@ -4,18 +4,18 @@ html, body {
 
 }
 
-.RAContainer {
+:local(.RAContainer) {
     background-color: black;
     font-family : 'Montserrat', sans-serif, bold;
     color: white;
 }
 
-.RAEntry {
+:local(.RAEntry) {
     display: flex;
 }
 
 
-.RAButton {
+:local(.RAButton) {
   background: #1DB954;
   border-radius: 500px;
   color: black;
