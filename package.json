@@ -25,6 +25,7 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
+    "seed" : "node faker.js",
     "test": "jest"
   },
   "dependencies": {
