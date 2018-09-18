@@ -7,7 +7,7 @@ import styles from './styles/relatedArtist.css'
 const axios = require('axios');
 var allArtists;
 var firstFour;
-class App extends React.Component {
+class RAApp extends React.Component {
    constructor(props) {
        super(props);
        this.state = {  
@@ -87,4 +87,4 @@ class App extends React.Component {
     }
 }
 
-export default CSSModules(App, styles);
+export default CSSModules(RAApp, styles);
