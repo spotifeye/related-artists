@@ -5,9 +5,6 @@ html, body {
 
 }
 
-:local(.appContainer) {
- 
-}
 
  :local(.RAContainer) {
     background-color: rgb(25, 25, 25);
@@ -48,23 +45,23 @@ html, body {
 }
 
 :local(.RAListenersContainer) {
-  /* visibility: hidden; */
-  width: auto;
+  display: flex;
+  table-layout: auto;
+  width: f;
   padding: 5px;
  
 } 
 :local(.RAListeners) {
-    /* visibility: hidden; */
-    display: flex;
+    visibility: hidden;
     margin-top: 11%;
     width: auto;
     padding: 5px;
    
   } 
 
-:local(.RAEntry:hover + .RAListeners) {
+:local(.RAEntry:hover .RAListeners) {
+  visibility: visible;
   top: 0px;
-  height: 300px;
 
 } 
 :local(.RAListeners:hover){
@@ -95,17 +92,11 @@ html, body {
     border: 1.4px solid white;
   }
 
-:local(.RAListeners) {
-    
-
-}
-
-:local(.RAListeners :hover) {
-    
-}
 
 :local(.PopularSong) {
-    display : flex;
-    background-color: rgb(25, 25, 25);
+    display : inline-flex;
+    overflow: visible;
+    padding: '5%';
+    height: auto;
 
 }

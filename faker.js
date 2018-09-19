@@ -19,7 +19,7 @@ for (let k = 0; k < 101; k++) {
 }
 
 console.log (results[1]);
-/*
+
 for (let j = 0; j < results.length; j++) {
   connection.query (
     `INSERT INTO artist (artist_name, listeners, artist_image, popularSong) VALUES("${results[j].artist_name}", "${results[j].listeners}", "${results[j].artist_image}", "${results[j].popularSong}")`,
@@ -57,4 +57,3 @@ for (let i = 1; i < 101; i++) {
     insertCount++;
   }
 }
-*/

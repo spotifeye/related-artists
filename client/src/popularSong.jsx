@@ -9,24 +9,30 @@ const popularSong = props => {
   let styles = {
     backgroundColor: 'rgb(25, 25, 25)',
     display: 'flex',
-    flexWrap: 'wrap',
-    //placement: ,
-    marginLeft: '20%',
+
+    justifyContent: 'center',
+    position: 'relative',
+    positionLeft: '200',
+    marginTop: '3%',
+
+    whiteSpace: 'nowrap',
+    width: '100px !important',
   };
   let styles2 = {
+    maxWidth: '120%',
+  };
+  let styles3 = {
     marginRight: '7%',
   };
   return (
     <div>
-      {/* <div styleName="SongContainer"> */}
-      {/* <div stylename="PopularSong"> */}
-      <div styleName="RAEntry">
-        <Popover id="popover-positioned-right" style={styles}>
-          <FontAwesomeIcon icon={faPlayCircle} style={styles2} />
+      <Popover id="popover-positioned-right" style={styles}>
+        <div style={styles2}>
+          <FontAwesomeIcon icon={faPlayCircle} style={styles3} />
           {props.artist.popularSong}
-        </Popover>
-      </div>
-      {/* </div> */}
+        </div>
+      </Popover>
+
     </div>
   );
 };
