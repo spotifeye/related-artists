@@ -69,7 +69,7 @@ class RAApp extends React.Component {
 
   render () {
     return (
-      <div styleName="appContainer">
+      <div>
         <h1>Fans Also Like</h1>
         <div>
           <div>
