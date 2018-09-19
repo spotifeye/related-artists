@@ -8,16 +8,21 @@ class relatedArtist extends React.Component {
     super (props);
     this.state = {
       addMoreArtists: false,
+      isListenersHidden: true,
     };
   }
 
   render () {
     return (
-      <div className="view overlay">
-        <div className="mask flex-center rgba-red-strong">
+      <div styleName="RAContainer">
+
+        <div>
           {this.props.relatedArtists.map ((artistEntry, index) => (
-            <div key={index}> <RelatedArtistEntry artist={artistEntry} /></div>
+            <div key={index}>
+              <RelatedArtistEntry artist={artistEntry} />
+            </div>
           ))}
+
         </div>
       </div>
     );

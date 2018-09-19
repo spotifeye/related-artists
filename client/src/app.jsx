@@ -12,6 +12,7 @@ class RAApp extends React.Component {
     this.state = {
       relatedArtists: [],
       toggleArtistList: false,
+      label: 'MORE ARTISTS',
       firstFourArtists: [],
     };
     this.lessArtists = this.lessArtists.bind (this);
@@ -50,11 +51,13 @@ class RAApp extends React.Component {
     if (this.state.toggleArtistList === false) {
       this.setState ({
         relatedArtists: allArtists,
+        label: 'LESS ARTISTS',
       });
       console.log ('i was clicked');
     } else {
       this.setState ({
         relatedArtists: firstFour,
+        label: 'MORE ARTISTS',
       });
     }
   }
@@ -66,21 +69,19 @@ class RAApp extends React.Component {
 
   render () {
     return (
-      <div>
+      <div styleName="appContainer">
+        <h1>Fans Also Like</h1>
         <div>
-          <div styleName="RAContainer">
-            <h1>Related Artists</h1>
-            <div id="panel panel-default">
-              <div id="panel-body">
-                <RelatedArtists relatedArtists={this.state.relatedArtists} />
-              </div>
-              <div styleName="RAButton" class="panel-footer">
-                <button onClick={this.moreArtistsHandleClick}>
-                  {' '}More Artists
-                </button>
-              </div>
+          <div>
+            <RelatedArtists relatedArtists={this.state.relatedArtists} />
 
-            </div>
+            <button
+              type="button"
+              styleName="RAButton"
+              onClick={this.moreArtistsHandleClick}
+            >
+              {this.state.label}
+            </button>
           </div>
         </div>
       </div>
