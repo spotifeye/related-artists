@@ -43,43 +43,47 @@ class relatedArtistEntry extends React.Component {
   render () {
     return (
       <div>
-        <div styleName="RAEntryContainer">
+        <table styleName="RAEntryContainer">
           <div>
             <div
               onMouseOver={this.toggleListeners}
               onMouseLeave={this.toggleListeners}
             >
               <div onClick={this.togglePopup}>
-                <div styleName="RAEntry">
+                <tr styleName="RAEntry">
 
-                  <div>
+                  <td>
                     <Image
                       src={this.props.artist.artist_image}
                       circle
                       width="50"
                       height="50"
                     />
-                  </div>
+                  </td>
 
-                  <div styleName="RAname">{this.props.artist.artist_name}</div>
-                  <div styleName="RAListenersContainer">
+                  <td styleName="RAname">
+                    {this.props.artist.artist_name}
+
+                  </td>
+                  <td styleName="RAListenersContainer">
                     <div styleName="RAListeners">
-                      {this.state.isListenersHidden === false &&
-                        <Listeners artist={this.props.artist} />}
+
+                      <Listeners artist={this.props.artist} />
                     </div>
-                  </div>
-                  <div styleName="PopularSong">
+
+                  </td>
+                  <td styleName="PopularSong">
 
                     {!this.state.isPopupHidden &&
                       <PopularSong artist={this.props.artist} />}
-                  </div>
+                  </td>
 
-                </div>
+                </tr>
 
               </div>
             </div>
           </div>
-        </div>
+        </table>
       </div>
     );
   }

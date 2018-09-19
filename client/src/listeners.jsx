@@ -2,15 +2,13 @@ import React from 'react';
 import styles from './styles/relatedArtist.css';
 import CSSModules from 'react-css-modules';
 
-let styles2 = {
-  //padding: '5px;',
-};
-
 const listeners = props => (
-  <div style={styles2}>
+  <div>
 
     <div className="RAListeners">
-      {props.artist.listeners}
+      {props.artist.listeners
+        .toString ()
+        .replace (/\B(?=(\d{3})+(?!\d))/g, ',')}
     </div>
   </div>
 );

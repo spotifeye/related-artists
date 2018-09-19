@@ -5,9 +5,6 @@ html, body {
 
 }
 
-:local(.appContainer) {
- 
-}
 
  :local(.RAContainer) {
     background-color: rgb(25, 25, 25);
@@ -48,7 +45,6 @@ html, body {
 }
 
 :local(.RAListenersContainer) {
-  /* visibility: hidden; */
   display: flex;
   table-layout: auto;
   width: f;
@@ -96,17 +92,11 @@ html, body {
     border: 1.4px solid white;
   }
 
-:local(.RAListeners) {
-    
-
-}
-
-:local(.RAListeners :hover) {
-    
-}
 
 :local(.PopularSong) {
-    display : flex;
-    background-color: rgb(25, 25, 25);
+    display : inline-flex;
+    overflow: visible;
+    padding: '5%';
+    height: auto;
 
 }
