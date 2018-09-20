@@ -30,7 +30,6 @@ class RAApp extends React.Component {
         for (let i = 0; i < response.data.length; i++) {
           if (i < 5) firstFour.push (response.data[i]);
         }
-        console.log ('all artists', allArtists);
         context.setState ({
           relatedArtists: firstFour,
         });
@@ -64,26 +63,20 @@ class RAApp extends React.Component {
 
   componentDidMount () {
     this.getRelatedArtists ();
-    console.log ('do something for the love of god');
   }
 
   render () {
     return (
-      <div>
-        <h1>Fans Also Like</h1>
-        <div>
-          <div>
-            <RelatedArtists relatedArtists={this.state.relatedArtists} />
-
-            <button
-              type="button"
-              styleName="RAButton"
-              onClick={this.moreArtistsHandleClick}
-            >
-              {this.state.label}
-            </button>
-          </div>
-        </div>
+      <div styleName="rap">
+        <h1 style={{fontWeight: '700'}}>Fans Also Like</h1>
+        <RelatedArtists relatedArtists={this.state.relatedArtists} />
+        <button
+          type="button"
+          styleName="RAButton"
+          onClick={this.moreArtistsHandleClick}
+        >
+          {this.state.label}
+        </button>
       </div>
     );
   }

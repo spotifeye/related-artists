@@ -15,15 +15,11 @@ class relatedArtist extends React.Component {
   render () {
     return (
       <div styleName="RAContainer">
-
-        <div>
-          {this.props.relatedArtists.map ((artistEntry, index) => (
-            <div key={index}>
-              <RelatedArtistEntry artist={artistEntry} />
-            </div>
-          ))}
-
-        </div>
+        {this.props.relatedArtists.map ((artistEntry, index) => (
+          <div key={index}>
+            <RelatedArtistEntry artist={artistEntry} />
+          </div>
+        ))}
       </div>
     );
   }
