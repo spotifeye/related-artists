@@ -7,8 +7,8 @@ var cors = require ('cors');
 app.use (cors ());
 app.use (express.static (path.join (__dirname + '/../public')));
 
-app.get (`/relatedArtists/id/artist`, (req, res) => {
-  db.getRelatedArtists ((error, data) => {
+app.get (`/artist/:id/relatedArtists`, (req, res) => {
+  db.getRelatedArtists (req.params.id, (error, data) => {
     if (error) {
       res.status (503).send (error);
     } else {

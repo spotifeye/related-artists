@@ -2,8 +2,8 @@ import React from 'react';
 import RelatedArtists from './relatedArtist.jsx';
 import CSSModules from 'react-css-modules';
 import styles from './styles/relatedArtist.css';
+import axios from 'axios';
 
-const axios = require ('axios');
 var allArtists;
 var firstFour;
 class RAApp extends React.Component {
@@ -13,17 +13,21 @@ class RAApp extends React.Component {
       relatedArtists: [],
       toggleArtistList: false,
       label: 'MORE ARTISTS',
-      firstFourArtists: [],
+      //firstFourArtists: [],
     };
     this.lessArtists = this.lessArtists.bind (this);
     this.getRelatedArtists = this.getRelatedArtists.bind (this);
     this.moreArtistsHandleClick = this.moreArtistsHandleClick.bind (this);
   }
+  componentDidMount () {
+    let id = Math.floor (Math.random () * 100) + 1;
+    this.getRelatedArtists (id);
+  }
 
-  getRelatedArtists () {
+  getRelatedArtists (id) {
     let context = this;
     axios
-      .get ('http://localhost:3002/relatedArtists/id/artist')
+      .get ('/artist/' + id + '/relatedArtists')
       .then (response => {
         allArtists = response.data;
         firstFour = [];
@@ -59,10 +63,6 @@ class RAApp extends React.Component {
         label: 'MORE ARTISTS',
       });
     }
-  }
-
-  componentDidMount () {
-    this.getRelatedArtists ();
   }
 
   render () {
