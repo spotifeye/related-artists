@@ -1,6 +1,6 @@
 var express = require ('express');
 var app = express ();
-var db = require ('../db_index.js');
+var db = require ('../database/index.js');
 const path = require ('path');
 var cors = require ('cors');
 
@@ -12,7 +12,6 @@ app.get (`/artist/:id/relatedArtists`, (req, res) => {
     if (error) {
       res.status (503).send (error);
     } else {
-      console.log ('server get success');
       res.send (data);
     }
   });
