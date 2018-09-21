@@ -5,7 +5,7 @@ import {Image, Grid, Row, Col} from 'react-bootstrap';
 import styles from './styles/relatedArtist.css';
 import CSSModules from 'react-css-modules';
 
-class relatedArtistEntry extends React.Component {
+class RelatedArtistEntry extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
@@ -55,4 +55,4 @@ class relatedArtistEntry extends React.Component {
   }
 }
 
-export default CSSModules (relatedArtistEntry, styles);
+export default CSSModules (RelatedArtistEntry, styles);
