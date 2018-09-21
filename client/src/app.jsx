@@ -40,7 +40,6 @@ class RelatedArtistsApp extends React.Component {
   }
 
   moreArtistsHandleClick () {
-    this.lessArtists ();
     if (this.state.toggleArtistList === false) {
       this.setState ({
         label: 'LESS ARTISTS',
