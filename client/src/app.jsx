@@ -4,23 +4,24 @@ import CSSModules from 'react-css-modules';
 import styles from './styles/relatedArtist.css';
 import axios from 'axios';
 
-var allArtists;
-var firstFour;
-class RAApp extends React.Component {
+class RelatedArtistsApp extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
       relatedArtists: [],
       toggleArtistList: false,
-      label: 'MORE ARTISTS',
-      //firstFourArtists: [],
+      label: '',
     };
-    this.lessArtists = this.lessArtists.bind (this);
+    this.renderArtists = this.renderArtists.bind (this);
+    this.renderButton = this.renderButton.bind (this);
     this.getRelatedArtists = this.getRelatedArtists.bind (this);
     this.moreArtistsHandleClick = this.moreArtistsHandleClick.bind (this);
   }
   componentDidMount () {
     let id = Math.floor (Math.random () * 100) + 1;
+    this.setState ({
+      label: 'MORE ARTISTS',
+    });
     this.getRelatedArtists (id);
   }
 
@@ -29,13 +30,8 @@ class RAApp extends React.Component {
     axios
       .get ('/artist/' + id + '/relatedArtists')
       .then (response => {
-        allArtists = response.data;
-        firstFour = [];
-        for (let i = 0; i < response.data.length; i++) {
-          if (i < 5) firstFour.push (response.data[i]);
-        }
         context.setState ({
-          relatedArtists: firstFour,
+          relatedArtists: response.data,
         });
       })
       .catch (function (error) {
@@ -43,43 +39,63 @@ class RAApp extends React.Component {
       });
   }
 
-  lessArtists () {
-    this.setState ({
-      toggleArtistList: !this.state.toggleArtistList,
-    });
-  }
-
   moreArtistsHandleClick () {
     this.lessArtists ();
     if (this.state.toggleArtistList === false) {
       this.setState ({
-        relatedArtists: allArtists,
         label: 'LESS ARTISTS',
+        toggleArtistList: !this.state.toggleArtistList,
       });
-      console.log ('i was clicked');
     } else {
       this.setState ({
-        relatedArtists: firstFour,
         label: 'MORE ARTISTS',
+        toggleArtistList: !this.state.toggleArtistList,
       });
     }
+  }
+
+  renderArtists () {
+    let firstFiveArtists = [];
+    for (let i = 0; i < this.state.relatedArtists.length; i++) {
+      if (i < 5) firstFiveArtists.push (this.state.relatedArtists[i]);
+    }
+    if (this.state.toggleArtistList === false) {
+      return (
+        <div styleName="rap">
+          <h1 style={{fontWeight: '700'}}>Fans Also Like</h1>
+          <RelatedArtists relatedArtists={firstFiveArtists} />
+        </div>
+      );
+    } else {
+      return (
+        <div styleName="rap">
+          <h1 style={{fontWeight: '700'}}>Fans Also Like</h1>
+          <RelatedArtists relatedArtists={this.state.relatedArtists} />
+        </div>
+      );
+    }
+  }
+
+  renderButton () {
+    return (
+      <button
+        type="button"
+        styleName="RAButton"
+        onClick={this.moreArtistsHandleClick}
+      >
+        {this.state.label}
+      </button>
+    );
   }
 
   render () {
     return (
       <div styleName="rap">
-        <h1 style={{fontWeight: '700'}}>Fans Also Like</h1>
-        <RelatedArtists relatedArtists={this.state.relatedArtists} />
-        <button
-          type="button"
-          styleName="RAButton"
-          onClick={this.moreArtistsHandleClick}
-        >
-          {this.state.label}
-        </button>
+        {this.renderArtists ()}
+        {this.renderButton ()}
       </div>
     );
   }
 }
 
-export default CSSModules (RAApp, styles);
+export default CSSModules (RelatedArtistsApp, styles);
