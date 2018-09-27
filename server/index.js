@@ -4,9 +4,9 @@ var db = require ('../database/index.js');
 const path = require ('path');
 var cors = require ('cors');
 
-app.use (cors ());
+app.use(cors());
 app.use(express.json());
-app.use (express.static (path.join (__dirname + '/../public')));
+app.use(express.static(path.join (__dirname + '/../public')));
 
 // https://stackoverflow.com/questions/411462/restful-way-to-create-multiple-items-in-one-request
 // https://stackoverflow.com/questions/32098423/rest-updating-multiple-resources-with-one-request-is-it-standard-or-to-be-avo
@@ -15,19 +15,24 @@ app.use (express.static (path.join (__dirname + '/../public')));
 // CREATE
 app.post('/artists/:artistId/related-artists', (req, res) => {
   const { artistId } = req.params;
-  const relatedArtist = req.body.data.artist;
-  console.log(artists);
-  // db.addRelatedArtist();
+  const relatedArtistId = req.body.data.artist.id;
+  db.addRelatedArtist(relatedArtistId, Number(artistId), (err, result) => {
+    if (err) {
+      res.status(503).send(err);
+    } else {
+      res.status(201).send(result);
+    }
+  });
 });
 
 // READ
-app.get(`/artist/:artistId/relatedArtists`, (req, res) => {
+app.get(`/artists/:artistId/related-artists`, (req, res) => {
   const { artistId } = req.params;
-  db.getRelatedArtists (req.params.id, (error, data) => {
+  db.getRelatedArtists (artistId, (error, data) => {
     if (error) {
-      res.status (503).send(error);
+      res.status(503).send(error);
     } else {
-      res.send (data);
+      res.send(data);
     }
   });
 });
@@ -36,14 +41,19 @@ app.get(`/artist/:artistId/relatedArtists`, (req, res) => {
 app.put('/artists/:artistId/related-artists', (req, res) => {
   const { artistId } = req.params;
   const relatedArtists = req.body.data.artists;
-  console.log(artists);
-  // db.setRelatedArtists();
+  db.setRelatedArtists(Number(artistId), relatedArtists, (err, data) => {
+    if (err) return res.status(503).send(err);
+    res.status(201).send(data);
+  });
 });
 
 // DELETE
-app.delete(`/artist/:artistId/related-artists/:relatedArtistId`, (req, res) => {
+app.delete(`/artists/:artistId/related-artists/:relatedArtistId`, (req, res) => {
   const { artistId, relatedArtistId } = req.params;
-  // db.deleteRelatedArtist();
+  db.deleteRelatedArtist(artistId, relatedArtistId, (err, data) => {
+    if (err) return res.status(503).send(err);
+    res.status(200).send(data);
+  });
 });
 
 app.all('*', (req, res) => {
