@@ -13,7 +13,7 @@ for (let k = 0; k < 101; k++) {
   results.push ({
     artist_name: faker.name.findName (),
     listeners: faker.random.number (),
-    artist_image: `https://s3.amazonaws.com/spotifyphotos/${k % 39 + 1}.jpg`,
+    artist_image: `https://s3-us-west-1.amazonaws.com/chris-larson/spotifeye/images/${k % 39 + 100}.jpg`,
     popularSong: faker.lorem.word (),
   });
 }

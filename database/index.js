@@ -13,7 +13,7 @@ const getRelatedArtists = function (id, showArtist) {
     `))`;
   connection.query (sqlQuery, function (error, result) {
     if (error) {
-      console.log ('db query error');
+      console.log ('db query error: ', error);
       showArtist (error, null);
     } else {
       console.log ('db query success');
