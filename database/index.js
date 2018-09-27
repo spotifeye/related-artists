@@ -8,65 +8,47 @@ let connection = mysql.createConnection ({
 
 const addRelatedArtist = function(artistId, relatedArtistId, callback) {
   // TODO: add error handling
-  const query = `INSERT INTO relatedArtists (main_Artist_ID, related_Artist_ID) VALUES (${connection.escape(artistId)}, ${connection.escape(relatedArtistId)})`;
+  const query = `INSERT INTO related_artists (artist_id, related_artist_id) VALUES (${connection.escape(artistId)}, ${connection.escape(relatedArtistId)})`;
   connection.query(query, (err, data) => {
-    if (err) {
-      console.log('db query error: ', err);
-      callback(err, null);
-    } else {
-      console.log('db query success');
-      callback(null, data);
-    }
+    if (err) return callback(err, null);
+    callback(null, data);
   });
 };
 
 const setRelatedArtists = function (artistId, relatedArtists, callback) {
+  // TODO: add error handling
   const ids = [];
   relatedArtists.forEach(relatedArtist => {
-    ids.push([relatedArtist.id, artistId]);
+    ids.push([artistId, relatedArtist.id]);
   });
 
-  const deleteQuery = `DELETE FROM relatedArtists WHERE main_Artist_ID=${Number(artistId)}`;
-  const query = `INSERT INTO relatedArtists(related_Artist_ID, main_Artist_ID) VALUES ?`;
+  const deleteQuery = `DELETE FROM related_artists WHERE artist_id=${Number(artistId)}`;
+  const query = `INSERT INTO related_artists(artist_id, related_artist_id) VALUES ?`;
   connection.query(deleteQuery, (err, data) => {
     if (err) return res.status(503).send('Error in delete query');
     connection.query(query, [ids], (err, data) => {
-      if (err) {
-        console.log('db query error: ', err);
-        callback(err, null);
-      } else {
-        console.log('db query success');
-        callback(null, data);
-      }
+      if (err) return callback(err, null);
+      callback(null, data);
     });
   });
 };
 
 const getRelatedArtists = function (artistId, callback) {
   // TODO: add error handling
-  let query = `SELECT * FROM artist WHERE artistID in (SELECT related_Artist_ID FROM relatedArtists WHERE main_Artist_ID = ${connection.escape(artistId)})`;
+  const query = `SELECT * FROM artists WHERE artist_id in (SELECT related_artist_id FROM related_artists WHERE artist_id = ${connection.escape(artistId)})`;
   connection.query(query, (err, data) => {
-    if (err) {
-      console.log('db query error: ', err);
-      callback(err, null);
-    } else {
-      console.log('db query success');
-      callback(null, data);
-    }
+    if (err) return callback(err, null);
+    callback(null, data);
   });
 };
 
 const deleteRelatedArtist = function (artistId, relatedArtistId, callback) {
   // TODO: add error handling
-  const query = `DELETE FROM relatedArtists WHERE main_Artist_ID = ${connection.escape(artistId)} AND related_Artist_ID = ${connection.escape(relatedArtistId)}`;
+  console.log(artistId, relatedArtistId);
+  const query = `DELETE FROM related_artists WHERE artist_id = ${connection.escape(artistId)} AND related_artist_id = ${connection.escape(relatedArtistId)}`;
   connection.query(query, (err, data) => {
-    if (err) {
-      console.log('db query error: ', err);
-      callback(err, null);
-    } else {
-      console.log('db query success');
-      callback(null, data);
-    }
+    if (err) return callback(err, null);
+    callback(null, data);
   });
 };
 
