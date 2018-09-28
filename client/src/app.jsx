@@ -28,7 +28,7 @@ class RelatedArtistsApp extends React.Component {
   getRelatedArtists (id) {
     let context = this;
     axios
-      .get ('/artists/' + id + '/related-artists')
+      .get ('/api/v1/artists/' + id + '/related-artists')
       .then (response => {
         context.setState ({
           relatedArtists: response.data,
