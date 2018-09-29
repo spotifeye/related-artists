@@ -21,21 +21,21 @@ const fs = require('fs');
 // }
 
 
-// for (let file = 1; file <= 20; file++) {
-//   const write = fs.createWriteStream(`/Users/chris/development/sdc_data/related_artists/part-${file}.csv`);
-//   let dataToWrite = 'artist_id,related_artist_id\n';
-//   write.write(dataToWrite);
-//   for (let artistRow = 1; artistRow <= 500000; artistRow++) {
-//     let records = '';
-//     for (let relatedRow = 1; relatedRow <= 25; relatedRow++) {
-//       let relatedArtist = {
-//         artist_id: (file * artistRow) + 10000000,
-//         related_artist_id: faker.random.number({min:10000001, max:20000000})
-//       };
-//       records += `${relatedArtist.artist_id},${relatedArtist.related_artist_id}` + '\n';
-//     }
-//     write.write(records);
-//   }
-//   write.end();
-// }
+for (let file = 1; file <= 1; file++) {
+  const write = fs.createWriteStream(`/Users/chris/development/sdc_data/related_artists/part-${file}.csv`);
+  let dataToWrite = 'artist_id,related_artist_id\n';
+  write.write(dataToWrite);
+  for (let artistRow = 1; artistRow <= 10000000; artistRow++) {
+    let records = '';
+    for (let relatedRow = 1; relatedRow <= 25; relatedRow++) {
+      let relatedArtist = {
+        artist_id: (file * artistRow) + 10000000,
+        related_artist_id: faker.random.number({min:10000001, max:20000000})
+      };
+      records += `${relatedArtist.artist_id},${relatedArtist.related_artist_id}` + '\n';
+    }
+    write.write(records);
+  }
+  write.end();
+}
 
