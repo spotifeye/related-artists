@@ -7,11 +7,11 @@
 --   PRIMARY KEY(artist_id)
 -- );
 
-DROP TABLE IF EXISTS related_artists;
-CREATE TABLE related_artists (
-  artist_id INTEGER NOT NULL,
-  related_artist_id INTEGER NOT NULL
-);
+-- DROP TABLE IF EXISTS related_artists;
+-- CREATE TABLE related_artists (
+--   artist_id INTEGER NOT NULL,
+--   related_artist_id INTEGER NOT NULL
+-- );
 
 -- ALTER TABLE related_artists
 --   ADD CONSTRAINT fk_artistId
