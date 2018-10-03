@@ -1,20 +1,21 @@
 const { Pool } = require('pg');
+const { HOST, USER, PASSWORD } = require('../../.env.js');
 
 const pool = new Pool({
-  host: 'localhost',
-  user: 'chris',
-  password: 'password',
+  host: HOST,
+  user: USER,
+  password: PASSWORD,
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
 });
 
-pool.on('acquire', () => console.error('Pool acquired'));
-pool.on('remove', () => console.error('Pool removed'));
-pool.on('error', (err, client) => {
+pool.on('acquire', () => console.error('Client acquired'));
+pool.on('remove', () => console.error('Client removed'));
+pool.on('error', (err) => {
   console.error('Unexpected error on idle client', err)
   process.exit(-1)
-})
+});
 
 const addRelatedArtist = function(artistId, relatedArtistId, callback) {
   const values = [artistId, relatedArtistId];

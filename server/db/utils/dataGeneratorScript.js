@@ -1,6 +1,8 @@
 const faker = require('faker');
 const fs = require('fs');
 
+// TODO: remove hard-coded path, replace with __dirname 
+
 // CREATE ARTISTS FILE
 for (let file = 1; file <= 1; file++) {
   const write = fs.createWriteStream(`/Users/chris/development/sdc_data/artists/part-${file}.csv`);

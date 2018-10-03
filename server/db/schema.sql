@@ -1,5 +1,4 @@
--- create database?
--- use database
+USE spotifeye;
 
 DROP TABLE IF EXISTS artists;
 CREATE TABLE artists (
