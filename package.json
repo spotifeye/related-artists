@@ -23,7 +23,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "nodemon server/server.js",
     "react-dev": "webpack -d --watch",
     "seed": "node database/dataGenerator.js",
     "test": "jest",
@@ -43,6 +43,7 @@
     "jquery": "^3.3.1",
     "mysql": "^2.16.0",
     "nodemon": "^1.18.4",
+    "pg": "^7.4.3",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "regenerator-runtime": "^0.12.1",
@@ -59,7 +60,6 @@
     "enzyme-adapter-react-15": "^1.1.0",
     "jest": "^23.6.0",
     "jest-enzyme": "^6.0.4",
-    "puppeteer": "^1.8.0",
     "react-bootstrap": "^0.32.4",
     "react-css-modules": "^4.7.7",
     "react-test-renderer": "^15.5.4",

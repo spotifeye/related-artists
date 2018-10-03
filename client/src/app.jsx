@@ -18,7 +18,7 @@ class RelatedArtistsApp extends React.Component {
     this.moreArtistsHandleClick = this.moreArtistsHandleClick.bind (this);
   }
   componentDidMount () {
-    let id = Math.floor (Math.random () * 100) + 1;
+    let id = Math.floor (Math.random () * 10000000) + 10000000;
     this.setState ({
       label: 'MORE ARTISTS',
     });
