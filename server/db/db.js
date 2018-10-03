@@ -13,53 +13,62 @@ const pool = new Pool({
 pool.on('acquire', () => console.error('Client acquired'));
 pool.on('remove', () => console.error('Client removed'));
 pool.on('error', (err) => {
-  console.error('Unexpected error on idle client', err)
-  process.exit(-1)
+  console.error('Unexpected error on idle client', err);
+  process.exit(-1);
 });
 
-const addRelatedArtist = function(artistId, relatedArtistId, callback) {
+const addRelatedArtist = (artistId, relatedArtistId, callback) => {
   const values = [artistId, relatedArtistId];
-  const query = 'INSERT INTO related_artists (artist_id, related_artist_id) VALUES ($1, $2)';
+  const query =
+    'INSERT INTO related_artists (artist_id, related_artist_id) VALUES ($1, $2)';
   pool.query(query, values, (err, data) => {
     if (err) return callback(err, null);
-    callback(null, data);
+    return callback(null, data);
   });
 };
 
-const setRelatedArtists = function (artistId, relatedArtists, callback) {
+const setRelatedArtists = (artistId, relatedArtists, callback) => {
   const id = [artistId];
   const values = [[], []];
-  relatedArtists.forEach(relatedArtist => {
+  relatedArtists.forEach((relatedArtist) => {
     values[0].push(artistId);
     values[1].push(relatedArtist.id);
   });
   const deleteQ = 'DELETE FROM related_artists WHERE artist_id=$1';
-  const insertQ = 'INSERT INTO related_artists(artist_id, related_artist_id) SELECT * FROM UNNEST ($1::int[], $2::int[])';
-  pool.query(deleteQ, id, (err) => {
-    if (err) return callback(err, null);
-    pool.query(insertQ, values, (err, data) => {
-      if (err) return callback(err, null);
-      callback(null, data);
+  const insertQ =
+    'INSERT INTO related_artists(artist_id, related_artist_id) SELECT * FROM UNNEST ($1::int[], $2::int[])';
+  pool.query(deleteQ, id, (delErr) => {
+    if (delErr) return callback(delErr, null);
+    return pool.query(insertQ, values, (insErr, data) => {
+      if (insErr) return callback(insErr, null);
+      return callback(null, data);
     });
   });
 };
 
-const getRelatedArtists = function (artistId, callback) {
+const getRelatedArtists = (artistId, callback) => {
   const values = [artistId];
-  const query = 'SELECT * FROM artists WHERE artist_id in (SELECT related_artist_id FROM related_artists WHERE artist_id = $1)';
+  const query =
+    'SELECT * FROM artists WHERE artist_id in (SELECT related_artist_id FROM related_artists WHERE artist_id = $1)';
   pool.query(query, values, (err, data) => {
     if (err) return callback(err, null);
-    callback(null, data.rows);
+    return callback(null, data.rows);
   });
 };
 
-const deleteRelatedArtist = function (artistId, relatedArtistId, callback) {
+const deleteRelatedArtist = (artistId, relatedArtistId, callback) => {
   const values = [artistId, relatedArtistId];
-  const query = 'DELETE FROM related_artists WHERE artist_id=$1 AND related_artist_id=$2';
+  const query =
+    'DELETE FROM related_artists WHERE artist_id=$1 AND related_artist_id=$2';
   pool.query(query, values, (err, data) => {
     if (err) return callback(err, null);
-    callback(null, data);
+    return callback(null, data);
   });
 };
 
-module.exports = { getRelatedArtists, deleteRelatedArtist, setRelatedArtists, addRelatedArtist };
+module.exports = {
+  getRelatedArtists,
+  deleteRelatedArtist,
+  setRelatedArtists,
+  addRelatedArtist,
+};

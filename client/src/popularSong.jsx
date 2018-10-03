@@ -1,12 +1,12 @@
 import React from 'react';
-import {Popover} from 'react-bootstrap';
-import styles from './styles/relatedArtist.css';
+import { Popover } from 'react-bootstrap';
 import CSSModules from 'react-css-modules';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPlayCircle} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
+import styles from './styles/relatedArtist.css';
 
-const PopularSong = props => {
-  let styles = {
+const PopularSong = (props) => {
+  const styles = {
     backgroundColor: 'rgb(25, 25, 25)',
     display: 'flex',
 
@@ -18,10 +18,10 @@ const PopularSong = props => {
     whiteSpace: 'nowrap',
     width: '100px !important',
   };
-  let styles2 = {
+  const styles2 = {
     maxWidth: '120%',
   };
-  let styles3 = {
+  const styles3 = {
     marginRight: '7%',
   };
   return (
@@ -32,9 +32,8 @@ const PopularSong = props => {
           {props.artist.popular_song}
         </div>
       </Popover>
-
     </div>
   );
 };
 
-export default CSSModules (PopularSong, styles);
+export default CSSModules(PopularSong, styles);

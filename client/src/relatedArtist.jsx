@@ -1,11 +1,11 @@
 import React from 'react';
+import CSSModules from 'react-css-modules';
 import RelatedArtistEntry from './relatedArtistEntry.jsx';
 import styles from './styles/relatedArtist.css';
-import CSSModules from 'react-css-modules';
 
-const RelatedArtists = props => (
+const RelatedArtists = (props) => (
   <div styleName="RAContainer">
-    {props.relatedArtists.map ((artistEntry, index) => (
+    {props.relatedArtists.map((artistEntry, index) => (
       <div key={index}>
         <RelatedArtistEntry artist={artistEntry} />
       </div>
@@ -13,4 +13,4 @@ const RelatedArtists = props => (
   </div>
 );
 
-export default CSSModules (RelatedArtists, styles);
+export default CSSModules(RelatedArtists, styles);
