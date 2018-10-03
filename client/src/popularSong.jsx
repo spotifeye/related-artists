@@ -24,13 +24,13 @@ const PopularSong = (props) => {
     marginRight: '7%',
   };
   const { artist } = props;
-  const { popular_song } = artist;
+  const { popularSong } = artist;
   return (
     <div>
       <Popover id="popover-positioned-right" style={styles1}>
         <div style={styles2}>
           <FontAwesomeIcon icon={faPlayCircle} style={styles3} />
-          {popular_song}
+          {popularSong}
         </div>
       </Popover>
     </div>

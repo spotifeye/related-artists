@@ -52,7 +52,17 @@ const getRelatedArtists = (artistId, callback) => {
     'SELECT * FROM artists WHERE artist_id in (SELECT related_artist_id FROM related_artists WHERE artist_id = $1)';
   pool.query(query, values, (err, data) => {
     if (err) return callback(err, null);
-    return callback(null, data.rows);
+    const artists = [];
+    data.rows.forEach((artist) => {
+      artists.push({
+        artistId: artist.artist_id,
+        artistName: artist.artist_name,
+        listeners: artist.listeners,
+        artistImage: artist.artist_image,
+        popularSong: artist.popular_song,
+      });
+    });
+    return callback(null, artists);
   });
 };
 

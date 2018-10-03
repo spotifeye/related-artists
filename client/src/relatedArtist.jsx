@@ -7,7 +7,7 @@ import styles from './styles/relatedArtist.css';
 const RelatedArtists = ({ relatedArtists }) => (
   <div styleName="RAContainer">
     {relatedArtists.map((artistEntry) => (
-      <div key={artistEntry.artist_id}>
+      <div key={artistEntry.artistId}>
         <RelatedArtistEntry artist={artistEntry} />
       </div>
     ))}

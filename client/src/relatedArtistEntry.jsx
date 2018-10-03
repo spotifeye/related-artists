@@ -26,16 +26,16 @@ class RelatedArtistEntry extends React.Component {
   render() {
     const { isPopupHidden } = this.state;
     const { artist } = this.props;
-    const { artist_image, artist_name } = artist;
+    const { artistImage, artistName } = artist;
     return (
       <div>
         <table styleName="RAEntryContainer">
           <div onClick={this.togglePopup}>
             <tr styleName="RAEntry">
               <td>
-                <Image src={artist_image} circle width="50" height="50" />
+                <Image src={artistImage} circle width="50" height="50" />
               </td>
-              <td styleName="RAname">{artist_name}</td>
+              <td styleName="RAname">{artistName}</td>
               <td>
                 <div styleName="RAListeners">
                   <Listeners artist={artist} />
