@@ -20,7 +20,6 @@ app.post('/api/v1/artists/:artistId/related-artists', (req, res) => {
 
 // READ
 app.get(`/api/v1/artists/:artistId/related-artists`, (req, res) => {
-  console.log('serving get related artists request')
   const { artistId } = req.params;
   db.getRelatedArtists (Number(artistId), (error, data) => {
     if (error) return res.status(503).send(error);
@@ -47,7 +46,7 @@ app.delete(`/api/v1/artists/:artistId/related-artists/:relatedArtistId`, (req, r
   });
 });
 
-// ALL ELSE 
+// ELSE 
 app.all('*', (req, res) => {
   res.status(404).send();
 });

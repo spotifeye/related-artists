@@ -1,2 +1,0 @@
-// COPY artists FROM '/Users/chris/development/sdc_data/artists/part-1.csv' DELIMITER ',' CSV HEADER;
-// COPY related_artists (artist_id, related_artist_id) from '/Users/chris/development/sdc_data/related_artists/part-1.csv' DELIMITER ',' CSV HEADER;
