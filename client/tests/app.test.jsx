@@ -1,11 +1,11 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15';
-import { shallow } from 'enzyme';
-import App from '../src/app.jsx';
+import App from '../src/app';
 import 'jest-enzyme';
 
 Enzyme.configure({ adapter: new Adapter() });
+const { shallow } = Enzyme;
 
 describe('test App ', () => {
   it('renders correctly', () => {
@@ -21,7 +21,7 @@ describe('test App ', () => {
   });
 
   it('should handle the click event', () => {
-    handleClick = jest.fn();
+    const handleClick = jest.fn();
     const output = shallow(<App />);
     output.simulate('click');
     expect(handleClick).toHaveBeenCalledWith('clicked');

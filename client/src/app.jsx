@@ -1,7 +1,7 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
 import axios from 'axios';
-import RelatedArtists from './relatedArtist.jsx';
+import RelatedArtists from './relatedArtist';
 import styles from './styles/relatedArtist.css';
 
 class RelatedArtistsApp extends React.Component {
@@ -36,30 +36,32 @@ class RelatedArtistsApp extends React.Component {
         });
       })
       .catch((error) => {
-        console.log(error);
+        throw error;
       });
   }
 
   moreArtistsHandleClick() {
-    if (this.state.toggleArtistList === false) {
+    const { toggleArtistList } = this.state;
+    if (toggleArtistList === false) {
       this.setState({
         label: 'LESS ARTISTS',
-        toggleArtistList: !this.state.toggleArtistList,
+        toggleArtistList: !toggleArtistList,
       });
     } else {
       this.setState({
         label: 'MORE ARTISTS',
-        toggleArtistList: !this.state.toggleArtistList,
+        toggleArtistList: !toggleArtistList,
       });
     }
   }
 
   renderArtists() {
+    const { relatedArtists, toggleArtistList } = this.state;
     const firstFiveArtists = [];
-    for (let i = 0; i < this.state.relatedArtists.length; i++) {
-      if (i < 5) firstFiveArtists.push(this.state.relatedArtists[i]);
+    for (let i = 0; i < relatedArtists.length; i += 1) {
+      if (i < 5) firstFiveArtists.push(relatedArtists[i]);
     }
-    if (this.state.toggleArtistList === false) {
+    if (toggleArtistList === false) {
       return (
         <div styleName="rap">
           <h1 style={{ fontWeight: '700' }}>Fans Also Like</h1>
@@ -70,19 +72,20 @@ class RelatedArtistsApp extends React.Component {
     return (
       <div styleName="rap">
         <h1 style={{ fontWeight: '700' }}>Fans Also Like</h1>
-        <RelatedArtists relatedArtists={this.state.relatedArtists} />
+        <RelatedArtists relatedArtists={relatedArtists} />
       </div>
     );
   }
 
   renderButton() {
+    const { label } = this.state;
     return (
       <button
         type="button"
         styleName="RAButton"
         onClick={this.moreArtistsHandleClick}
       >
-        {this.state.label}
+        {label}
       </button>
     );
   }
