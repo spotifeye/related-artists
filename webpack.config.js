@@ -1,28 +1,27 @@
+const path = require('path');
 
-var path = require('path');
-var SRC_DIR = path.join(__dirname, '/client');
-var DIST_DIR = path.join(__dirname, '/public');
-//
-//`/Users/ShabnamMokhtarani/Desktop/HRSF101-Repos/hrsf101-front-end-capstone/client/src/index.jsx`,
+const SRC_DIR = path.join(__dirname, '/client');
+const DIST_DIR = path.join(__dirname, '/public');
+
 module.exports = {
-  entry:  `${SRC_DIR}/src/index.jsx`,
+  entry: `${SRC_DIR}/src/index.jsx`,
   output: {
     filename: 'bundle.js',
-    path: DIST_DIR
+    path: DIST_DIR,
   },
   module: {
     rules: [
       {
         test: /\.jsx?/,
         include: SRC_DIR,
-        loader: 'babel-loader',      
+        loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015']
-        }
+          presets: ['react', 'es2015'],
+        },
       },
       {
         test: /\.css$/,
-        use: 'style-loader'
+        use: 'style-loader',
       },
       {
         test: /\.css$/,
@@ -31,11 +30,14 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]'
-            }
-          }
-        ]
-      }
-    ]
-  }
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+            },
+          },
+        ],
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['*', '.wasm', '.mjs', '.js', '.json', '.jsx'],
+  },
 };

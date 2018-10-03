@@ -1,51 +1,48 @@
 import React from 'react';
-import PopularSong from './popularSong.jsx';
-import Listeners from './listeners.jsx';
-import {Image, Grid, Row, Col} from 'react-bootstrap';
-import styles from './styles/relatedArtist.css';
+import PropTypes from 'prop-types';
+import { Image } from 'react-bootstrap';
 import CSSModules from 'react-css-modules';
+import PopularSong from './popularSong';
+import Listeners from './listeners';
+import styles from './styles/relatedArtist.css';
 
 class RelatedArtistEntry extends React.Component {
-  constructor (props) {
-    super (props);
+  constructor(props) {
+    super(props);
     this.state = {
       isPopupHidden: true,
-      isListenersHidden: true,
     };
 
-    this.togglePopup = this.togglePopup.bind (this);
+    this.togglePopup = this.togglePopup.bind(this);
   }
-  togglePopup () {
-    this.setState ({
-      isPopupHidden: !this.state.isPopupHidden,
+
+  togglePopup() {
+    const { isPopupHidden } = this.state;
+    this.setState({
+      isPopupHidden: !isPopupHidden,
     });
   }
 
-  render () {
+  render() {
+    const { isPopupHidden } = this.state;
+    const { artist } = this.props;
+    const { artistImage, artistName } = artist;
     return (
       <div>
         <table styleName="RAEntryContainer">
           <div onClick={this.togglePopup}>
             <tr styleName="RAEntry">
               <td>
-                <Image
-                  src={this.props.artist.artist_image}
-                  circle
-                  width="50"
-                  height="50"
-                />
+                <Image src={artistImage} circle width="50" height="50" />
               </td>
-              <td styleName="RAname">
-                {this.props.artist.artist_name}
-              </td>
+              <td styleName="RAname">{artistName}</td>
               <td>
                 <div styleName="RAListeners">
-                  <Listeners artist={this.props.artist} />
+                  <Listeners artist={artist} />
                 </div>
               </td>
               <td styleName="PopularSong">
-                {!this.state.isPopupHidden &&
-                  <PopularSong artist={this.props.artist} />}
+                {!isPopupHidden && <PopularSong artist={artist} />}
               </td>
             </tr>
           </div>
@@ -55,4 +52,8 @@ class RelatedArtistEntry extends React.Component {
   }
 }
 
-export default CSSModules (RelatedArtistEntry, styles);
+RelatedArtistEntry.propTypes = {
+  artist: PropTypes.instanceOf(Object).isRequired,
+};
+
+export default CSSModules(RelatedArtistEntry, styles);

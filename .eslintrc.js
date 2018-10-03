@@ -1,10 +1,38 @@
-/**
- * These rules enforce the Hack Reactor Style Guide
- *
- * Visit this repo for more information:
- *   https://github.com/reactorcore/eslint-config-hackreactor
- */
-
 module.exports = {
-  extends: './node_modules/eslint-config-hackreactor/index.js'
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "prettier/react"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+    },
+  },
+  "env": {
+    "jest": true,
+    "browser": true,
+  },
+  "plugins": [
+      "prettier",
+      "react",
+    ],
+  "rules": {
+    "import/no-extraneous-dependencies": [
+      "error", 
+      { "devDependencies": true },
+    ],
+    "no-underscore-dangle": [
+      "error",
+      { "allow": ["_id"]},
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "all",
+        "arrowParens": "always",
+      }
+    ]
+  }
 };

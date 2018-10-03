@@ -1,100 +1,103 @@
 import React from 'react';
-import RelatedArtists from './relatedArtist.jsx';
 import CSSModules from 'react-css-modules';
-import styles from './styles/relatedArtist.css';
 import axios from 'axios';
+import RelatedArtists from './relatedArtist';
+import styles from './styles/relatedArtist.css';
 
 class RelatedArtistsApp extends React.Component {
-  constructor (props) {
-    super (props);
+  constructor(props) {
+    super(props);
     this.state = {
       relatedArtists: [],
       toggleArtistList: false,
       label: '',
     };
-    this.renderArtists = this.renderArtists.bind (this);
-    this.renderButton = this.renderButton.bind (this);
-    this.getRelatedArtists = this.getRelatedArtists.bind (this);
-    this.moreArtistsHandleClick = this.moreArtistsHandleClick.bind (this);
-  }
-  componentDidMount () {
-    let id = Math.floor (Math.random () * 10000000) + 10000000;
-    this.setState ({
-      label: 'MORE ARTISTS',
-    });
-    this.getRelatedArtists (id);
+    this.renderArtists = this.renderArtists.bind(this);
+    this.renderButton = this.renderButton.bind(this);
+    this.getRelatedArtists = this.getRelatedArtists.bind(this);
+    this.moreArtistsHandleClick = this.moreArtistsHandleClick.bind(this);
   }
 
-  getRelatedArtists (id) {
-    let context = this;
+  componentDidMount() {
+    const id = Math.floor(Math.random() * 10000000) + 10000000;
+    this.setState({
+      label: 'MORE ARTISTS',
+    });
+    this.getRelatedArtists(id);
+  }
+
+  getRelatedArtists(id) {
+    const context = this;
     axios
-      .get ('/api/v1/artists/' + id + '/related-artists')
-      .then (response => {
-        context.setState ({
+      .get(`/api/v1/artists/${id}/related-artists`)
+      .then((response) => {
+        context.setState({
           relatedArtists: response.data,
         });
       })
-      .catch (function (error) {
-        console.log (error);
+      .catch((error) => {
+        throw error;
       });
   }
 
-  moreArtistsHandleClick () {
-    if (this.state.toggleArtistList === false) {
-      this.setState ({
+  moreArtistsHandleClick() {
+    const { toggleArtistList } = this.state;
+    if (toggleArtistList === false) {
+      this.setState({
         label: 'LESS ARTISTS',
-        toggleArtistList: !this.state.toggleArtistList,
+        toggleArtistList: !toggleArtistList,
       });
     } else {
-      this.setState ({
+      this.setState({
         label: 'MORE ARTISTS',
-        toggleArtistList: !this.state.toggleArtistList,
+        toggleArtistList: !toggleArtistList,
       });
     }
   }
 
-  renderArtists () {
-    let firstFiveArtists = [];
-    for (let i = 0; i < this.state.relatedArtists.length; i++) {
-      if (i < 5) firstFiveArtists.push (this.state.relatedArtists[i]);
+  renderArtists() {
+    const { relatedArtists, toggleArtistList } = this.state;
+    const firstFiveArtists = [];
+    for (let i = 0; i < relatedArtists.length; i += 1) {
+      if (i < 5) firstFiveArtists.push(relatedArtists[i]);
     }
-    if (this.state.toggleArtistList === false) {
+    if (toggleArtistList === false) {
       return (
         <div styleName="rap">
-          <h1 style={{fontWeight: '700'}}>Fans Also Like</h1>
+          <h1 style={{ fontWeight: '700' }}>Fans Also Like</h1>
           <RelatedArtists relatedArtists={firstFiveArtists} />
         </div>
       );
-    } else {
-      return (
-        <div styleName="rap">
-          <h1 style={{fontWeight: '700'}}>Fans Also Like</h1>
-          <RelatedArtists relatedArtists={this.state.relatedArtists} />
-        </div>
-      );
     }
+    return (
+      <div styleName="rap">
+        <h1 style={{ fontWeight: '700' }}>Fans Also Like</h1>
+        <RelatedArtists relatedArtists={relatedArtists} />
+      </div>
+    );
   }
 
-  renderButton () {
+  renderButton() {
+    const { label } = this.state;
     return (
       <button
         type="button"
         styleName="RAButton"
         onClick={this.moreArtistsHandleClick}
       >
-        {this.state.label}
+        {label}
       </button>
     );
   }
 
-  render () {
+  render() {
     return (
       <div styleName="rap">
-        {this.renderArtists ()}
-        {this.renderButton ()}
+        {this.renderArtists()}
+        {this.renderButton()}
       </div>
     );
   }
 }
 
-export default CSSModules (RelatedArtistsApp, styles);
+export default CSSModules(RelatedArtistsApp, styles);
