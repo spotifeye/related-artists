@@ -10,8 +10,6 @@ const pool = new Pool({
   connectionTimeoutMillis: 2000,
 });
 
-pool.on('acquire', () => console.error('Client acquired'));
-pool.on('remove', () => console.error('Client removed'));
 pool.on('error', (err) => {
   console.error('Unexpected error on idle client', err);
   process.exit(-1);
