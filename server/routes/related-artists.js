@@ -1,7 +1,10 @@
+const redis = require('redis');
 const db = require('../db/db');
+const { REDIS_PORT } = require('../../.env');
+
+const client = redis.createClient(REDIS_PORT);
 
 const addRelatedArtist = (req, res) => {
-  console.log(req.body);
   const { artistId } = req.params;
   const relatedArtistId = req.body.data.artist.id;
   db.addRelatedArtist(Number(artistId), relatedArtistId, (err, data) => {
@@ -12,9 +15,13 @@ const addRelatedArtist = (req, res) => {
 
 const getRelatedArtists = (req, res) => {
   const { artistId } = req.params;
-  db.getRelatedArtists(Number(artistId), (error, data) => {
-    if (error) return res.status(503).send(error);
-    return res.send(data);
+  client.get(artistId, (err, response) => {
+    if (response) return res.send(JSON.parse(response));
+    return db.getRelatedArtists(Number(artistId), (error, data) => {
+      if (error) return res.status(503).send(error);
+      client.setex(artistId, 180, JSON.stringify(data));
+      return res.send(data);
+    });
   });
 };
 
