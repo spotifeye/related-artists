@@ -1,3 +1,4 @@
+const nr = require('newrelic');
 const app = require('./app.js');
 const { PORT } = require('../.env.js');
 
