@@ -1,8 +1,8 @@
 const { Pool } = require('pg');
-const { HOST, USER, PASSWORD } = require('../../.env.js');
+const { DB_HOST, USER, PASSWORD } = require('../../.env.js');
 
 const pool = new Pool({
-  host: HOST,
+  host: DB_HOST,
   user: USER,
   database: USER,
   password: PASSWORD,
