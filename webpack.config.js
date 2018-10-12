@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const SRC_DIR = path.join(__dirname, '/client');
 const DIST_DIR = path.join(__dirname, '/public');
@@ -9,6 +10,13 @@ module.exports = {
     filename: 'bundle.js',
     path: DIST_DIR,
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify('production') },
+    }),
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
+  ],
   module: {
     rules: [
       {

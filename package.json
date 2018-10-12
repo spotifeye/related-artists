@@ -23,11 +23,12 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "nodemon server/server.js",
-    "react-dev": "webpack -d --watch",
+    "start": "node server/server.js",
+    "start-dev": "nodemon server/server.js",
+    "build": "webpack",
+    "build-dev": "webpack -d --watch",
     "seed": "node database/dataGenerator.js",
     "test": "jest",
-    "build": "webpack --config webpack.prod.js",
     "eslint-check": "eslint --print-config . | eslint-config-prettier-check",
     "lint": "eslint --ext .js,.jsx server client --fix"
   },
