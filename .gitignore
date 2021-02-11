@@ -25,6 +25,4 @@ build/
 dist/
 
 #env setup
-.env.js
 .env.sh 
-newrelic.js

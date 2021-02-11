@@ -1,12 +1,12 @@
 const { Pool } = require('pg');
-const { HOST, USER, PASSWORD } = require('../../.env.js');
+const { DB_HOST, DB_USER, DB_PW } = require('../../.env.js');
 
 const pool = new Pool({
-  host: HOST,
-  user: USER,
-  database: USER,
-  password: PASSWORD,
-  max: 10,
+  host: DB_HOST,
+  user: DB_USER,
+  database: DB_USER,
+  password: DB_PW,
+  max: 19,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
 });
